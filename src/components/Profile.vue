@@ -87,4 +87,9 @@ export default {
 .card img {
   margin: 20px 0;
 }
+@media only screen and (max-width: 600px) {
+  .card {
+    min-width: 85%;
+  }
+}
 </style>
