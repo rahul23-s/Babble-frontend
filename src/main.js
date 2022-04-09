@@ -4,7 +4,7 @@ import router from "./router";
 import axios from "axios";
 import store from "./store";
 
-axios.defaults.baseURL = "http://localhost:5000";
+axios.defaults.baseURL = "https://backend-babble.herokuapp.com";
 
 const app = createApp(App);
 
