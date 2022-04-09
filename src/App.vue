@@ -1,26 +1,74 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="parent">
+    <Header title="Babble" />
+    <Profile v-if="$store.getters.isProfileOpen" />
+    <NewChatModal v-if="$store.getters.isCreateChatModalOpen" />
+    <router-view class="views" :chats="chats"></router-view>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Header from "./components/Header.vue";
+import Profile from "./components/Profile.vue";
+import NewChatModal from "./components/NewChatModal.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
-  }
-}
+    Header,
+    Profile,
+    NewChatModal,
+  },
+  data() {
+    return {
+      chats: [],
+    };
+  },
+};
 </script>
 
 <style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Nunito", sans-serif;
+  color: #ffffff;
+  overflow-x: hidden;
+}
+.parent {
+  overflow: hidden;
+}
+*::-webkit-scrollbar {
+  width: 2px;
+}
+*::-webkit-scrollbar-track {
+  background: #0014256b;
+}
+*::-webkit-scrollbar-thumb {
+  background: #5b81c0;
+}
+
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  color: #ffffff;
+  background: #001425;
+  min-height: 100vh;
+  overflow-y: hidden;
+}
+
+nav {
+  width: 100vw;
+  height: 80px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #001425;
+}
+.views {
+  margin-top: 80px;
 }
 </style>
