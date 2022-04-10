@@ -3,7 +3,7 @@
     <Header title="Babble" />
     <Profile v-if="$store.getters.isProfileOpen" />
     <NewChatModal v-if="$store.getters.isCreateChatModalOpen" />
-    <router-view class="views" :chats="chats"></router-view>
+    <router-view class="views"></router-view>
   </div>
 </template>
 
@@ -18,16 +18,6 @@ export default {
     Header,
     Profile,
     NewChatModal,
-  },
-  data() {
-    return {
-      chats: [],
-    };
-  },
-  created() {
-    if (performance.navigation.type == performance.navigation.TYPE_RELOAD) {
-      this.$router.push("/");
-    }
   },
 };
 </script>

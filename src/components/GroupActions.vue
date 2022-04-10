@@ -134,8 +134,6 @@ export default {
       }
     },
     async addMember(user) {
-      // console.log("MembersList", this.membersList);
-
       let memberIds = [];
       this.membersList.map((member) => memberIds.push(member._id));
       if (memberIds.includes(user._id)) {
@@ -171,7 +169,6 @@ export default {
     async removeMember(user) {
       this.successMsg = "";
       this.errorMsg = "";
-      console.log("Called");
       try {
         const config = {
           headers: {
@@ -200,7 +197,6 @@ export default {
         this.membersList = this.membersList.filter(
           (member) => member._id !== user._id
         );
-        console.log("MemberLIst", this.membersList);
         this.successMsg = "User Removed!";
       } catch (error) {
         this.errorMsg = "Error: Couldn't Remove user!";

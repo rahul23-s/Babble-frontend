@@ -171,7 +171,7 @@ export default {
 
         const { data } = await this.$axios.get(`api/chat`, config);
         this.$store.commit("SET_CHATS", data);
-        console.log(data);
+
         this.chats = data;
         this.allChats = data;
       } catch (error) {

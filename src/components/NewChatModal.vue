@@ -193,7 +193,6 @@ export default {
         },
       };
       const { data } = await this.$axios.get(`api/user`, config);
-      console.log(data);
 
       this.users = data;
       this.usersToRender = data;
@@ -223,7 +222,6 @@ export default {
           },
         };
         const { data } = await this.$axios.post(`api/chat`, { userId }, config);
-        console.log(data);
 
         this.$store.commit("SET_SELECTED_CHAT", data);
         this.$store.commit("SET_CHATOPEN", data);

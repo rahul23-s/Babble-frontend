@@ -109,7 +109,6 @@ export default {
 
   methods: {
     captureImg(e) {
-      console.log("Started capture");
       const img = e.target.files[0];
       this.loading = true;
       // const file = e.target.files[0];
@@ -124,7 +123,6 @@ export default {
         img.type === "image/png" ||
         img.type === "image/jpg"
       ) {
-        console.log("Inside if");
         const data = new FormData();
         data.append("file", img);
         data.append("upload_preset", "babble");
@@ -203,7 +201,6 @@ export default {
         this.$store.commit("SET_TOKEN", data.token);
         this.$store.commit("SET_ID", data._id);
         this.$store.commit("SET_LOGINSTATUS");
-        console.log(data);
       } catch (error) {
         console.log(error);
       }

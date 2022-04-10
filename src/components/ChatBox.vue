@@ -169,12 +169,11 @@ export default {
     // this.animationData = animationData;
 
     //Starting socket
-    console.log("Socket called tilll here");
+
     this.socket = io(this.endPoint);
     this.socket.emit("setup", this.$store.getters.user);
     this.socket.on("connected", () => (this.socketConnected = true));
 
-    //
     this.socket.on("Message recieved", (newMessageRecieved) => {
       if (
         !this.selectedChatCompare ||
@@ -187,7 +186,6 @@ export default {
     });
 
     this.socket.on("typing", () => {
-      console.log("Typing emit");
       this.isTyping = true;
     });
     this.socket.on("stopTyping", () => (this.isTyping = false));
@@ -229,7 +227,7 @@ export default {
 
           config
         );
-        console.log("Messages", data);
+
         this.messages = data;
 
         this.isLoading = false;
@@ -259,7 +257,7 @@ export default {
           },
           config
         );
-        console.log(data);
+
         this.socket.emit("newMsg", data);
         this.messages = [...this.messages, data];
 

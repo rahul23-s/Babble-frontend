@@ -42,8 +42,6 @@
   </div>
 </template>
 <script>
-import Tasks from "../components/Tasks.vue";
-import Form from "../components/Form.vue";
 import Login from "../components/Login.vue";
 import SignUp from "../components/SignUp.vue";
 import { LoginOutlined, UserAddOutlined } from "@ant-design/icons-vue";
@@ -52,60 +50,16 @@ export default {
   components: {
     Login,
     SignUp,
-    Tasks,
-    Form,
+
     LoginOutlined,
     UserAddOutlined,
   },
   data() {
     return {
-      tasks: [],
       loginTab: true,
     };
   },
-  methods: {
-    openChat(id) {
-      // let i;
-      // for (i = 0; i < this.tasks.length; i++) {
-      //   if (this.tasks[i].id === id) {
-      //     break;
-      //   }
-      // }
-      // this.tasks[i].opened = true;
 
-      this.tasks = this.tasks.map((task) =>
-        task.id === id ? { ...task, opened: !task.opened } : task
-      );
-    },
-    send(chatInfo) {
-      this.tasks = [chatInfo, ...this.tasks];
-    },
-    async fetchChats() {
-      // const res = await fetch("http://localhost:5000/chats")
-      const res = await fetch("api/chats");
-      const data = await res.json();
-    },
-    async addChat(chat) {
-      const res = await fetch("api/chats", {
-        methods: "POST",
-        headers: {
-          "Content-type": "application/json",
-        },
-        body: JSON.stringify(chat),
-      });
-      const data = await res.json();
-
-      this.tasks = [data, ...this.tasks];
-    },
-    async deleteChat(id) {
-      const res = await fetch(`api/chats/${id}`, {
-        methods: "DELETE",
-      });
-      // const data = await res.json();
-
-      // this.tasks = [data, ...this.tasks];
-    },
-  },
   created() {
     const data = JSON.parse(localStorage.getItem("user"));
     if (data) {
