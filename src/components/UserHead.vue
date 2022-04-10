@@ -5,8 +5,8 @@
       <h3 class="chatName">
         {{ user.name }}
       </h3>
-      <h6>
-        {{ user.email }}
+      <h6 v-show="user._id === '62530603ae30f4f77ec48adc'">
+        ~ Project Creator
       </h6>
     </div>
   </div>

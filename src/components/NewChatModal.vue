@@ -76,6 +76,7 @@
                 v-model.trim="searchText"
               />
             </div>
+            <h3 class="suggest" v-show="!this.searchText">Suggestions</h3>
             <div class="listUsers">
               <UserHead
                 @click="accessChat(user._id)"
@@ -195,7 +196,13 @@ export default {
       const { data } = await this.$axios.get(`api/user`, config);
 
       this.users = data;
-      this.usersToRender = data;
+      this.usersToRender = data.filter(
+        (user) =>
+          user._id === "625168b0d9218d05ab04b717" ||
+          user._id === "62530603ae30f4f77ec48adc" ||
+          user._id === "62517519d9218d05ab04b84f" ||
+          user._id === "62534560fe40ae24afbc95ba"
+      );
     } catch (error) {
       console.log(error);
     }
@@ -210,7 +217,13 @@ export default {
             user.email.toLowerCase().includes(this.searchText.toLowerCase())
         );
       } else {
-        this.usersToRender = this.users;
+        this.usersToRender = this.users.filter(
+          (user) =>
+            user._id === "625168b0d9218d05ab04b717" ||
+            user._id === "62530603ae30f4f77ec48adc" ||
+            user._id === "62517519d9218d05ab04b84f" ||
+            user._id === "62534560fe40ae24afbc95ba"
+        );
       }
     },
     async accessChat(userId) {
@@ -310,6 +323,11 @@ export default {
   height: 20px;
   margin: 4px 0;
   overflow: hidden;
+}
+.suggest {
+  margin-top: 10px;
+  margin-left: 5px;
+  text-align: left;
 }
 .card {
   width: 90%;
