@@ -66,6 +66,7 @@ export default {
 }
 .avatar {
   border-radius: 50%;
+  object-fit: cover;
 }
 .card {
   min-width: 400px;

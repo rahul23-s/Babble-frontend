@@ -49,6 +49,7 @@ export default {
 }
 .avatar {
   border-radius: 50%;
+  object-fit: cover;
 }
 .msg {
   padding: 10px;

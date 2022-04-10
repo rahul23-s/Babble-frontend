@@ -58,5 +58,6 @@ export default {
 
 .userHead img {
   border-radius: 50%;
+  object-fit: cover;
 }
 </style>

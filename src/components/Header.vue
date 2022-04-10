@@ -119,5 +119,6 @@ export default {
   width: 40px;
   margin: 0 10px;
   cursor: pointer;
+  object-fit: cover;
 }
 </style>

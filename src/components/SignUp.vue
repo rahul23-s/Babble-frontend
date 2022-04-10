@@ -133,7 +133,7 @@ export default {
         })
           .then((res) => res.json())
           .then((data) => {
-            this.avatar = data.url.toString();
+            this.avatar = data.url.toString().replace("http", "https");
             this.loading = false;
           })
           .catch((err) => {
@@ -273,5 +273,6 @@ input {
 .avatar {
   border-radius: 50%;
   overflow: hidden;
+  object-fit: cover;
 }
 </style>
