@@ -49,9 +49,9 @@ export default {
     },
   },
   updated() {
-    if (!this.$store.getters.loginStatus) {
-      this.$router.push("/");
-    }
+    // if (!this.$store.getters.loginStatus) {
+    //   this.$router.push("/");
+    // }
   },
   mounted() {
     //Setting Mobile View State
@@ -62,15 +62,16 @@ export default {
     }
   },
   created() {
-    if (!this.$store.getters.loginStatus) {
-      this.$router.push("/");
-    }
+    // if (!this.$store.getters.loginStatus) {
+    //   this.$router.push("/");
+    // }
   },
 
   methods: {
     logout() {
       localStorage.removeItem("user");
       this.$store.commit("LOGOUT");
+      this.$router.push("/");
     },
   },
 };
