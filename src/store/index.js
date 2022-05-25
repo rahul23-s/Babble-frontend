@@ -93,7 +93,6 @@ export default createStore({
     isProfile: (state) => {
       return state.isProfile;
     },
-
     profileStates: (state) => {
       return state.profileStates;
     },

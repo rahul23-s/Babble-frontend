@@ -26,7 +26,7 @@
           SignUp <UserAddOutlined />
         </button>
       </div>
-      <div class="card">
+      <div :style="[isLoading ? { display: 'none' } : {}]" class="card">
         <h2>
           <img
             src="../assets/logo.png"
@@ -35,8 +35,20 @@
             height="40"
           />Welcome to Babble!
         </h2>
-        <Login v-if="loginTab" />
-        <SignUp v-else />
+        <Login
+          v-if="loginTab"
+          @loading="setLoading(true)"
+          @stop="setLoading(false)"
+        />
+        <SignUp
+          v-else
+          @loading="setLoading(true)"
+          @stop="setLoading(false)"
+          @signUp="setText"
+        />
+      </div>
+      <div :style="[!isLoading ? { display: 'none' } : {}]" class="loaderCard">
+        <Loading :loaderText="loaderText" />
       </div>
     </div>
   </div>
@@ -45,19 +57,30 @@
 import Login from "../components/Login.vue";
 import SignUp from "../components/SignUp.vue";
 import { LoginOutlined, UserAddOutlined } from "@ant-design/icons-vue";
+import Loading from "../components/Loading.vue";
 export default {
   name: "Home",
   components: {
     Login,
     SignUp,
-
+    Loading,
     LoginOutlined,
     UserAddOutlined,
   },
   data() {
     return {
       loginTab: true,
+      isLoading: false,
+      loaderText: "Logging In...",
     };
+  },
+  methods: {
+    setLoading(val) {
+      this.isLoading = val;
+    },
+    setText() {
+      this.loaderText = "Signing You Up...";
+    },
   },
 
   created() {
@@ -119,7 +142,8 @@ export default {
   transition: all 300ms;
 }
 
-.card {
+.card,
+.loaderCard {
   width: 800px;
   min-height: 400px;
   height: fit-content;
@@ -132,6 +156,27 @@ export default {
   align-items: center;
   justify-content: center;
   margin-bottom: 50px;
+}
+
+.loaderCard {
+  animation: glowing 1.2s ease-in-out infinite;
+}
+
+@keyframes glowing {
+  0% {
+    box-shadow: 0 0 2px #7facff, 0 0 4px #7facff, 0 0 6px #7facff,
+      0 0 8px #7facff;
+  }
+
+  50% {
+    box-shadow: 0 0 15px #c7e1ec, 0 0 20px #7facff, 0 0 30px #7facff,
+      0 0 40px #7facff;
+  }
+
+  100% {
+    box-shadow: 0 0 2px #7facff, 0 0 4px #7facff, 0 0 6px #7facff,
+      0 0 8px #7facff;
+  }
 }
 
 .card h2 {
@@ -147,7 +192,8 @@ export default {
 }
 
 @media only screen and (max-width: 600px) {
-  .card {
+  .card,
+  .loaderCard {
     width: 90vw;
     padding: 40px 20px;
   }

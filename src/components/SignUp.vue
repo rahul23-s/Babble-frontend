@@ -111,12 +111,6 @@ export default {
     captureImg(e) {
       const img = e.target.files[0];
       this.loading = true;
-      // const file = e.target.files[0];
-      // const reader = new FileReader();
-      // reader.readAsDataURL(file);
-      // reader.onloadend = () => {
-      //   this.avatar = reader.result;
-      // };
 
       if (
         img.type === "image/jpeg" ||
@@ -175,6 +169,9 @@ export default {
       }
 
       try {
+        console.log("emittingggg");
+        this.$emit("loading");
+        this.$emit("signUp");
         const config = {
           headers: {
             "Content-type": "application/json",
@@ -193,7 +190,7 @@ export default {
         );
 
         localStorage.setItem("user", JSON.stringify(data));
-
+        this.$emit("stop");
         this.$router.push(`/chat`);
         this.$store.commit("SET_NAME", data.name);
         this.$store.commit("SET_EMAIL", data.email);
@@ -202,6 +199,7 @@ export default {
         this.$store.commit("SET_ID", data._id);
         this.$store.commit("SET_LOGINSTATUS");
       } catch (error) {
+        this.$emit("stop");
         console.log(error);
       }
     },

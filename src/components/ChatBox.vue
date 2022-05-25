@@ -166,8 +166,6 @@ export default {
       this.fetchMsgs();
     });
 
-    // this.animationData = animationData;
-
     //Starting socket
 
     this.socket = io(this.endPoint);

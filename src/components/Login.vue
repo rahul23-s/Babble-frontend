@@ -42,6 +42,7 @@ export default {
       this.errorMsg = "";
 
       try {
+        this.$emit("loading");
         const config = {
           headers: {
             "Content-type": "application/json",
@@ -58,7 +59,7 @@ export default {
         );
 
         localStorage.setItem("user", JSON.stringify(data));
-
+        this.$emit("stop");
         this.$router.push(`/chat`);
         this.$store.commit("SET_NAME", data.name);
         this.$store.commit("SET_EMAIL", data.email);
@@ -67,6 +68,7 @@ export default {
         this.$store.commit("SET_ID", data._id);
         this.$store.commit("SET_LOGINSTATUS");
       } catch (error) {
+        this.$emit("stop");
         this.errorMsg = "Invalid Credentials!";
         console.log(error);
       }
