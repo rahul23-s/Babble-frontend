@@ -79,12 +79,16 @@ export default {
 .avatar {
   border-radius: 50%;
   object-fit: cover;
+  flex-basis: 40px;
+  flex-grow: 0;
+  flex-shrink: 0;
 }
 .msg {
   padding: 8px;
   margin: 7px 15px;
   border-radius: 10px;
   /* background: rgb(61, 97, 128); */
+  text-align: left;
 }
 .time {
   position: absolute;
