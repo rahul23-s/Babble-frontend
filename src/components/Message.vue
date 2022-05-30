@@ -23,6 +23,15 @@
     >
       {{ message.content }}
     </span>
+    <span
+      class="time"
+      :style="[
+        isSender(message.sender._id)
+          ? { marginLeft: '55px' }
+          : { marginRight: '15px' },
+      ]"
+      >{{ time }}</span
+    >
   </div>
 </template>
 <script>
@@ -32,6 +41,24 @@ export default {
       type: Object,
       required: true,
     },
+  },
+  data() {
+    return {
+      time: null,
+    };
+  },
+  beforeMount() {
+    console.log(this.message);
+    let sentAt = new Date(this.message.createdAt)
+      .toLocaleString("en-US", {
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+        hour: "numeric",
+        minute: "numeric",
+      })
+      .replace(",", "");
+    this.time = sentAt;
   },
   methods: {
     isSender(senderId) {
@@ -46,15 +73,23 @@ export default {
   align-items: center;
   height: fit-content;
   margin: 10px;
+  padding-bottom: 10px;
+  position: relative;
 }
 .avatar {
   border-radius: 50%;
   object-fit: cover;
 }
 .msg {
-  padding: 10px;
+  padding: 8px;
   margin: 7px 15px;
   border-radius: 10px;
   /* background: rgb(61, 97, 128); */
+}
+.time {
+  position: absolute;
+  font-size: 10px;
+  color: #f1f1f193;
+  bottom: 0;
 }
 </style>
