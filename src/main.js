@@ -4,7 +4,7 @@ import router from "./router";
 import axios from "axios";
 import store from "./store";
 
-axios.defaults.baseURL = "https://backend-babble.herokuapp.com";
+axios.defaults.baseURL = "https://babble-backend.onrender.com";
 
 const app = createApp(App);
 

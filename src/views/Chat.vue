@@ -236,8 +236,8 @@ export default {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 10px;
-  min-height: fit-content;
-  height: 60px;
+  overflow: hidden;
+  min-height: 4rem;
 }
 .searchbar {
   background: #001425;
