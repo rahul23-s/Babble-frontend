@@ -291,8 +291,7 @@ export default {
     },
     scrollToBottom(addScroll) {
       const el = this.$refs.scrollMe;
-
-      el.scrollTop = el.scrollHeight - el.clientHeight + addScroll;
+      if(el) el.scrollTop = el.scrollHeight - el.clientHeight + addScroll;
     },
   },
 };

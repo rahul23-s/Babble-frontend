@@ -22,7 +22,7 @@
       }}
     </h3>
     <h6>
-      {{ chat.latestMessage ? chat.latestMessage.content : "Start a conversation..."}}
+      {{ chat.latestMessage ? chat.latestMessage.content.length > 30 ? chat.latestMessage.content.substring(0,30)+'...' : chat.latestMessage.content : "Start a conversation..."}}
       <span class="time">{{ getMsgDate }}</span>
     </h6>
   </div>
@@ -82,6 +82,7 @@ export default {
   width: 100%;
   display: flex;
   justify-content: space-between;
+  text-align: start;
 }
 .chatHead:hover,
 .active {
