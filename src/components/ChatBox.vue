@@ -135,6 +135,7 @@ import Message from "./Message.vue";
 import io from "socket.io-client";
 import Lottie from "vue-lottie";
 import jsonData from "../assets/dots.json";
+import { backendEndpoint } from "@/constants";
 
 export default {
   components: {
@@ -152,7 +153,7 @@ export default {
       isLoading: true,
       messages: [],
       message: "",
-      endPoint: "https://backend-babble.herokuapp.com",
+      endPoint: backendEndpoint,
       socket: "",
       selectedChatCompare: null,
       socketConnected: false,
