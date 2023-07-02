@@ -79,6 +79,7 @@
             v-for="message in messages"
             :message="message"
             :key="message._id"
+            @deleteMsg="deleteMessage"
           />
         </div>
 
@@ -208,6 +209,30 @@ export default {
     },
   },
   methods: {
+    deleteMessage(message) {
+      try {
+        const config = {
+          headers: {
+            Authorization: `Bearer ${this.$store.getters.user.token}`,
+          },
+        };
+        debugger
+        this.$axios.delete(
+          `api/message/${message._id}`,
+          config
+        ).then((res)=>{
+          const {deletedMessage} = res.data;
+          const index = this.messages.findIndex((message) => message._id === deletedMessage._id);
+          if (index !== -1) {
+            this.messages.splice(index, 1);
+          }
+        })
+
+
+      } catch (error) {
+        console.log(error);
+      }
+    },
     getSender(loggedIn, users) {
       return users[0]._id === loggedIn._id ? users[1] : users[0];
     },

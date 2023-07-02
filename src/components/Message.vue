@@ -13,6 +13,10 @@
       width="40"
       height="40"
     />
+
+    <DeleteTwoTone v-if="$store.getters.isMobile && !isSender(message.sender._id)" twoToneColor="#ff0000" class="cursor-pointer" @click="deleteMsg" />
+    <DeleteTwoTone v-if="!$store.getters.isMobile && !isSender(message.sender._id)" twoToneColor="#ff0000"  class="delete-icon" @click="deleteMsg"/>
+
     <span
       class="msg"
       :style="[
@@ -35,7 +39,13 @@
   </div>
 </template>
 <script>
+import { DeleteTwoTone } from "@ant-design/icons-vue"
+
 export default {
+
+  components : {
+    DeleteTwoTone
+  },
   props: {
     message: {
       type: Object,
@@ -64,10 +74,13 @@ export default {
     isSender(senderId) {
       return senderId !== this.$store.getters.user._id;
     },
+    deleteMsg(){
+      this.$emit('deleteMsg',this.message);
+    }
   },
 };
 </script>
-<style scoped>
+<style  scoped>
 .message {
   display: flex;
   align-items: center;
@@ -76,6 +89,16 @@ export default {
   padding-bottom: 10px;
   position: relative;
 }
+
+.delete-icon{
+    display: none;
+    cursor: pointer;
+}
+
+.message:hover .delete-icon{
+  display: block;
+}
+
 .avatar {
   border-radius: 50%;
   object-fit: cover;
@@ -90,6 +113,7 @@ export default {
   /* background: rgb(61, 97, 128); */
   text-align: left;
 }
+
 .time {
   position: absolute;
   font-size: 10px;

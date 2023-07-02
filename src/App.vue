@@ -44,6 +44,10 @@ export default {
   background: #5b81c0;
 }
 
+.cursor-pointer{
+  cursor: pointer;
+}
+
 #app {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
